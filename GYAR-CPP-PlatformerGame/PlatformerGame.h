@@ -6,13 +6,13 @@ private:
 	bool running;
 
 public:
-	PlatformerGame() {}
+	PlatformerGame();
 
-	void Start() {}
+	void Start();
 
 private:
-	void Update() {}
-	void Input() {}
-	void Render() {}
+	void Update();
+	void Input();
+	void Render();
 };
 

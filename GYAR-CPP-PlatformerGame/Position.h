@@ -1,14 +1,14 @@
 #pragma once
 class Position
 {
-//private:
 public:
-	//void set(float x, float y) {}
 	float x;
 	float y;
 public:
 	Position() : x(0), y(0) {}
-	Position(float x, float y) {}
+	Position(float x, float y) {
+		this->x = x;
+		this->y = y;
+	}
 };
 
-// need more work
