@@ -1,8 +1,9 @@
 #pragma once
 class Position
 {
-private:
-	void set(float x, float y) {}
+//private:
+public:
+	//void set(float x, float y) {}
 	float x;
 	float y;
 public:

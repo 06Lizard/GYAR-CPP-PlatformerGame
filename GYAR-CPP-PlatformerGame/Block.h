@@ -6,6 +6,7 @@ private:
 	// seting of value
 	//texture
 	// colour
+	Position pos;
 public:
 	// getting of value
 	// texture colour
