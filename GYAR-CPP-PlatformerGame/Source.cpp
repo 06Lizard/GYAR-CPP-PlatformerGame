@@ -1,4 +1,7 @@
 #include <iostream>
+#include "PlatformerGame.h"
+
 int main() {
-	std::cout << "\033[5m" << "This is red text" << "\033[0m" << std::endl;
+	PlatformerGame game;
+	game.Start();
 }

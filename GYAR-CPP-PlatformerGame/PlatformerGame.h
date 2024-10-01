@@ -11,6 +11,7 @@ public:
 	void Start();
 
 private:
+	void Initzialize();
 	void Update();
 	void Input();
 	void Render();

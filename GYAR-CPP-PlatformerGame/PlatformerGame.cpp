@@ -4,8 +4,19 @@ PlatformerGame::PlatformerGame()
 {
 }
 
+void PlatformerGame::Initzialize() {
+
+}
+
 void PlatformerGame::Start()
 {
+	Initzialize();
+	while (true) 
+	{
+		Render();
+		Input();
+		Update();
+	}
 }
 
 void PlatformerGame::Update()
