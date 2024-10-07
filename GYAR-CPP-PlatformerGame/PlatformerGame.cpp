@@ -5,6 +5,8 @@ PlatformerGame::PlatformerGame()
 }
 
 void PlatformerGame::Initzialize() {
+	std::cout << "\033[?25l"; // hide cursor
+	// std::cout << "\033[?25h"; // show cursor
 	Render();
 }
 

@@ -13,8 +13,8 @@ public: // moreso writing :)
 	void formatting(); // default formatting
 
 public:
-	void draw(const Position& pos, char texture, int colour, int backround);
-	void draw(Block& block);
+	static void draw(const Position& pos, char texture, int colour, int backround);
+	static void draw(Block& block);
 };
 
 // should be quite enough
