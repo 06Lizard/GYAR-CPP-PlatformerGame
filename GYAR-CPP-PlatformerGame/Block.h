@@ -11,7 +11,7 @@ public:
 	Block(char texture, short colour, short backround, Position pos) : texture(texture), colour(colour), backround(backround), Position(pos) {}
 	Block(char texture, short colour, short backround, short x, short y) : texture(texture), colour(colour),backround(backround), Position(x, y) {}
 	
-	char getTexture();
-	short getColour();
-	short getBackround();
+	char getTexture() const;
+	short getColour() const;
+	short getBackround() const;
 };
