@@ -14,36 +14,51 @@ void PlatformerGame::Start()
 {
 	Initzialize();
 
-	// headFrame = now (last frame we drew)	
-	// if (curTime - headFrame < timeFPS) wait(curTime-headFrame)
-	// head + timeFPS
-
-
-	while (true)
+	while (running)
 	{
 		Input();
 		Update();
 		Render();
+
+		//std::this_thread::sleep_for(std::chrono::milliseconds(100)); // tmp framerate limiter
 	}
 }
 
 void PlatformerGame::Update()
 {
+	if (movementState & W) {
+		//player.y++;
+		std::cout << "W";
+	}
+	if (movementState & A) {
+		//player.x--;
+		std::cout << "A";
+	}
+	if (movementState & S) {
+		//player.y--;
+		std::cout << "S";
+	}
+	if (movementState & D) {
+		//player.x++;
+		std::cout << "D";
+	}
 }
 
-void PlatformerGame::Input() //make keys async?
-{ //might be problems with key presses not registered otherwhise
+void PlatformerGame::Input() //make keys async? (this is now assync)
+{ //might be problems with key presses not registered otherwhise	
+	movementState = 0; // resets the movment state
+
 	if (GetAsyncKeyState('W') & 0x8000) {
-		std::cout << 'W';
+		movementState |= W;
 	}
 	if (GetAsyncKeyState('A') & 0x8000) {
-		std::cout << 'A';
+		movementState |= A;
 	}
 	if (GetAsyncKeyState('S') & 0x8000) {
-		std::cout << 'S';
+		movementState |= S;
 	}
 	if (GetAsyncKeyState('D') & 0x8000) {
-		std::cout << 'D';
+		movementState |= D;
 	}
 	/* Why 0x8000 and why &
 	* the reason for 0x8000 is becuse it's a hexadecimal representation of a binary number, as we know eatch part of information is a bit and every bit is organized in a group of 4 or nible as it's called, 8 bits or 2 nibles creates a byte
@@ -61,6 +76,12 @@ void PlatformerGame::Input() //make keys async?
 void PlatformerGame::Render()
 {
 	Drawing::draw(player);
+}
+
+
+
+void PlatformerGame::jump() {
+	//if(player.)
 }
 
 // need work
