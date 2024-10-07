@@ -25,7 +25,12 @@ void Drawing::draw(const Position& pos, char texture, int colour, int backround)
 	std::cout << "\033[" << pos.y << ";" << pos.x << "H\033[" << colour << "m\033[" << backround << "m" << texture;
 }
 
+void Drawing::draw(const Position& pos, char texture, int colour)
+{
+	std::cout << "\033[" << pos.y << ";" << pos.x << "H\033[" << colour << "m" << texture;
+}
+
 void Drawing::draw(Block& block)
 {
-	std::cout << "\033[" << block.y << ";" << block.x << "H\033[" << block.getColour() << "m\033[" << block.getBackround() << "m" << block.getTexture();
+	std::cout << "\033[" << block.y << ";" << block.x << "H\033[" << block.getColour() << "m" << block.getTexture();
 }

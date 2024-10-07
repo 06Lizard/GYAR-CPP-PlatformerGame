@@ -2,11 +2,11 @@
 class Position
 {
 public:
-	float x;
-	float y;
+	short x;
+	short y;
 public:
 	Position() : x(0), y(0) {}
-	Position(float x, float y) {
+	Position(short x, short y) {
 		this->x = x;
 		this->y = y;
 	}	

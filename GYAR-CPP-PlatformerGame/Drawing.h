@@ -14,6 +14,7 @@ public: // moreso writing :)
 
 public:
 	static void draw(const Position& pos, char texture, int colour, int backround);
+	static void draw(const Position& pos, char texture, int colour);
 	static void draw(Block& block);
 };
 

@@ -10,8 +10,3 @@ short Block::getColour() const
 {
 	return colour;
 }
-
-short Block::getBackround() const
-{
-	return backround;
-}

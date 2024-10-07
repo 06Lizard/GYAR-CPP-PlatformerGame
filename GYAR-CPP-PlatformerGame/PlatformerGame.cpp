@@ -7,6 +7,17 @@ PlatformerGame::PlatformerGame()
 void PlatformerGame::Initzialize() {
 	std::cout << "\033[?25l"; // hide cursor
 	// std::cout << "\033[?25h"; // show cursor
+
+	// set the mapp
+	for (int i = 0; i < 64; i++) {
+		this->mapp[i][16] = Block('=', Text::Green, i, 16);
+	}
+	
+	if (mapp[player.x][player.y - 1].getTexture() == '=') { // some better way of finding if it's ground or not would be great...
+		player.isGrounded;
+	}	
+
+	// lastly
 	Render();
 }
 
@@ -26,6 +37,9 @@ void PlatformerGame::Start()
 
 void PlatformerGame::Update()
 {
+	//move(player, movementState);
+
+
 	if (movementState & W) {
 		//player.y++;
 		std::cout << "W";
@@ -76,12 +90,39 @@ void PlatformerGame::Input() //make keys async? (this is now assync)
 void PlatformerGame::Render()
 {
 	Drawing::draw(player);
+	for (int i = 0; i < 64; i++) {
+		Drawing::draw(mapp[i][0]);
+	}
 }
 
 
 
-void PlatformerGame::jump() {
-	//if(player.)
+void PlatformerGame::move(Entity& entity, uint8_t& movementState) {
+	if (!entity.jumpTime < 3) {
+		entity.jumpTime = 0;
+		!entity.isJump;
+	}
+	if (!entity.isGrounded && !entity.isJump) {
+		if (mapp[entity.x][entity.y - 1].getTexture() == '=') {
+			entity.isGrounded;
+		}
+		entity.y--;
+	}
+	else if (movementState & W && entity.isJump) {
+		entity.x++;
+		entity.jumpTime++;
+	}
+	else if (movementState & W && entity.isGrounded && entity.isSkyClear) {
+		entity.isJump;
+		entity.y++;
+		!entity.isGrounded;
+	}
+
+
+	//entity.isJump;
+	//mapp[entity.x][entity.y - 1] ==
+	//if (movementState & W && entity.isGrounded) {
+	//}
 }
 
 // need work
