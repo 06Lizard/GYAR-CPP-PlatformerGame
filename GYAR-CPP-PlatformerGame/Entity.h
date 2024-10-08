@@ -1,5 +1,6 @@
 #pragma once
 #include "Block.h"
+#include <stdint.h>
 
 class Entity : public Block
 {

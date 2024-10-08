@@ -1,6 +1,5 @@
 #pragma once
 #include "Position.h"
-#include <iostream>
 
 class Block : public Position
 {
