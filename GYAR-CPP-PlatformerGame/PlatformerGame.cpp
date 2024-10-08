@@ -13,9 +13,15 @@ void PlatformerGame::Initzialize() {
 		this->mapp[i][16] = Block('=', Text::Green, i, 16);
 	}
 	
-	if (mapp[player.x][player.y - 1].getTexture() == '=') { // some better way of finding if it's ground or not would be great...
-		player.isGrounded;
-	}	
+	
+	//if (mapp[player.x][player.y - 1].getTexture() == '=') { // some better way of finding if it's ground or not would be great...
+	//	player.isGrounded;
+	//}
+	//else !player.isGrounded;
+	//if (mapp[player.x][player.y + 1].getTexture() == '=') { // some better way of finding if it's ground or not would be great...
+	//	!player.isSkyClear;
+	//}
+	//else player.isSkyClear;
 
 	// lastly
 	Render();
@@ -37,25 +43,9 @@ void PlatformerGame::Start()
 
 void PlatformerGame::Update()
 {
-	//move(player, movementState);
-
-
-	if (movementState & W) {
-		//player.y++;
-		std::cout << "W";
-	}
-	if (movementState & A) {
-		//player.x--;
-		std::cout << "A";
-	}
-	if (movementState & S) {
-		//player.y--;
-		std::cout << "S";
-	}
-	if (movementState & D) {
-		//player.x++;
-		std::cout << "D";
-	}
+	move(player, movementState); // move player
+	std::cout << "Px:" << player.x << ":" << player.y << ";"; // debug player position
+	// collition check with enemy
 }
 
 void PlatformerGame::Input() //make keys async? (this is now assync)
@@ -98,31 +88,68 @@ void PlatformerGame::Render()
 
 
 void PlatformerGame::move(Entity& entity, uint8_t& movementState) {
-	if (!entity.jumpTime < 3) {
-		entity.jumpTime = 0;
-		!entity.isJump;
+	// is sky clear check
+	if (mapp[entity.x][entity.y - 1].getTexture() == '=')
+		entity.isSkyClear = false;
+	else entity.isSkyClear = true;
+
+	// is grounded check
+	if (mapp[entity.x][entity.y + 1].getTexture() == '=')
+		entity.isGrounded = true;
+	else entity.isGrounded = false;
+
+	//Jump time needs to be more consistent
+
+	// 1. stop jumping if W and jumping
+	if (!(movementState & W) && entity.isJump) {
+		entity.jumpTime = 0;           // Reset jump time
+		entity.isJump = false;         // Stop jump
 	}
-	if (!entity.isGrounded && !entity.isJump) {
-		if (mapp[entity.x][entity.y - 1].getTexture() == '=') {
-			entity.isGrounded;
+	
+	// 2. if not grounded and not jumping, fall down
+	else if (!entity.isGrounded && !entity.isJump) {
+		if (mapp[entity.x][entity.y + 1].getTexture() == '=') { // checked if on ground
+			entity.isGrounded = true;  
 		}
-		entity.y--;
+		else {
+			entity.y++; // fall
+		}
 	}
-	else if (movementState & W && entity.isJump) {
-		entity.x++;
+	
+	// 3. begin jumping if w is pressed and player is on ground and the sky is clear above
+	else if (movementState & W && entity.isGrounded && entity.isSkyClear) {
+		entity.isJump = true;
+		entity.isGrounded = false;
+		entity.y--;
 		entity.jumpTime++;
 	}
-	else if (movementState & W && entity.isGrounded && entity.isSkyClear) {
-		entity.isJump;
-		entity.y++;
-		!entity.isGrounded;
+
+	// 4. continue jump if w is still pressed and jumpTime is less than 3
+	else if (movementState & W && entity.isJump) {
+		if (entity.jumpTime < 3) {
+			if (entity.isSkyClear) {
+				entity.y--;
+				entity.jumpTime++;
+			}
+			else {
+				entity.isJump = false; // sky blocked
+			}
+		}
+		else {
+			entity.isJump = false; // jumpTime to large
+		}
 	}
 
-
-	//entity.isJump;
-	//mapp[entity.x][entity.y - 1] ==
-	//if (movementState & W && entity.isGrounded) {
-	//}
+	// Left & Right
+	if (movementState & A && !(movementState & D)) {
+		if (mapp[entity.x - 1][entity.y].getTexture() != '=') // colition check
+			entity.x--;
+	}
+	else if (!(movementState & A) && movementState & D) {
+		if (mapp[entity.x + 1][entity.y].getTexture() != '=') // colition check
+			entity.x++;
+	}	
 }
 
 // need work
+// a better was of doing the collition checks then checking textures...
