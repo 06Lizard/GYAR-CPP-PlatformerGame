@@ -9,9 +9,13 @@ void PlatformerGame::Initzialize() {
 	// std::cout << "\033[?25h"; // show cursor
 
 	// set the mapp
-	for (int i = 0; i < 64; i++) {
-		this->mapp[i][16] = Block('=', Text::Green, i, 16);
+	for (int x = 0; x < 64; x++) {
+		this->mapp[x][16] = Block('=', Text::Green, x, 16);
 	}
+	for (int x = 8; x < 12; x++) {
+		this->mapp[x][13] = Block('=', Text::Green, x, 13);
+	}
+
 	Render();
 }
 
