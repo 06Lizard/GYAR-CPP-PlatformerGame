@@ -20,8 +20,8 @@ public:
 	static const uint8_t A				= 1 << 1; // 0000 0010
 	static const uint8_t S				= 1 << 2; // 0000 0100
 	static const uint8_t D				= 1 << 3; // 0000 1000
-	static const uint8_t isGrounded	= 1 << 4; // 0001 0000
-	static const uint8_t isJump		= 1 << 5; // 0010 0000
+	static const uint8_t isGrounded		= 1 << 4; // 0001 0000
+	static const uint8_t isJump			= 1 << 5; // 0010 0000
 	static const uint8_t jumpTime		= 0b11000000; // 2 bit variable 
 
 public:
