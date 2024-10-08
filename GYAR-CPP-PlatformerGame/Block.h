@@ -1,5 +1,7 @@
 #pragma once
 #include "Position.h"
+#include <iostream>
+
 class Block : public Position
 {
 protected: // need to double check, but able to be changed if something inherits it
