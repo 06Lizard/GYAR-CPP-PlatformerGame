@@ -12,18 +12,6 @@ void PlatformerGame::Initzialize() {
 	for (int i = 0; i < 64; i++) {
 		this->mapp[i][16] = Block('=', Text::Green, i, 16);
 	}
-	
-	
-	//if (mapp[player.x][player.y - 1].getTexture() == '=') { // some better way of finding if it's ground or not would be great...
-	//	player.isGrounded;
-	//}
-	//else !player.isGrounded;
-	//if (mapp[player.x][player.y + 1].getTexture() == '=') { // some better way of finding if it's ground or not would be great...
-	//	!player.isSkyClear;
-	//}
-	//else player.isSkyClear;
-
-	// lastly
 	Render();
 }
 
@@ -80,8 +68,10 @@ void PlatformerGame::Input() //make keys async? (this is now assync)
 void PlatformerGame::Render()
 {
 	Drawing::draw(player);
-	for (int i = 0; i < 64; i++) {
-		Drawing::draw(mapp[i][0]);
+	for (int y = 0; y < 16; y++) {
+		for (int x = 0; x < 64; x++) {
+			Drawing::draw(mapp[x][y]);
+		}
 	}
 }
 
@@ -153,4 +143,4 @@ void PlatformerGame::move(Entity& entity) {
 }
 
 // need work
-// a better was of doing the collition checks then checking textures...
+// a better way of doing the collition checks than checking textures...
