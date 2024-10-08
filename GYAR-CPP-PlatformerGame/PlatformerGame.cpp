@@ -129,11 +129,12 @@ void PlatformerGame::move(Entity& entity) {
 
 	// 4. continue jump if w is still pressed and jumpTime is less than 3
 	else if (entity.states & entity.W && (entity.states & entity.isJump)) {
-		// I really wanna remove this uint8_t initialisation cause it wastes a entire byte of memory
-		uint8_t jumpTime = (entity.states >> 6) & 0b11; // extract jumpTime
-		if (jumpTime < 3 && mapp[entity.x][entity.y - 1].getTexture() != '=') {
+		// I really wanna remove this uint8_t initialisation cause it wastes a entire byte of memory << removed
+		//uint8_t jumpTime = (entity.states >> 6) & 0b11; // extract jumpTime
+		// ^^ that code above is a clear example of wasting resorses, using a whole byte for no reason. And additional overhead for the construction and deconstruction :<
+		if (((entity.states >> 6) & 0b11) < 3 && mapp[entity.x][entity.y - 1].getTexture() != '=') {
 			entity.y--; // Move up
-			entity.states = (entity.states & ~entity.jumpTime) | ((jumpTime + 1) << 6); // increment jumpTime
+			entity.states = (entity.states & ~entity.jumpTime) | (((entity.states >> 6) & 0b11) + 1) << 6; // increment jumpTime directly now like it allways should've been
 		}
 		else {
 			entity.states &= ~entity.isJump; // Stop jumping if max height is reached or blocked
