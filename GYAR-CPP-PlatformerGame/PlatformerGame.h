@@ -14,8 +14,9 @@ private:
 	bool running;
 
 	Player player = Player(3, '#', Text::Red, 10, 10);
+	Position camerapos = Position();
 	Entity entity = Entity('?', Text::Blue, 0, 0);	
-	Block mapp[64][16];
+	Block mapp[64][16]; // 4096bytes to store the map...
 
 public:
 	PlatformerGame();

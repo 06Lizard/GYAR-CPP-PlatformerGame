@@ -15,6 +15,7 @@ void PlatformerGame::Initzialize() {
 	for (int x = 8; x < 12; x++) {
 		this->mapp[x][13] = Block('=', Text::Green, x, 13);
 	}
+	this->mapp[player.x][player.y] = player;
 
 	Render();
 }
@@ -29,13 +30,16 @@ void PlatformerGame::Start()
 		Update();
 		Render();
 
-		std::this_thread::sleep_for(std::chrono::milliseconds(500)); // tmp framerate limiter
+		std::this_thread::sleep_for(std::chrono::milliseconds(100)); // tmp framerate limiter
 	}
 }
 
 void PlatformerGame::Update()
 {
+	mapp[player.x][player.y] = Block();
 	move(player); // move player
+	mapp[player.x][player.y] = player;
+
 	std::cout << "Px:" << player.x << ":" << player.y << ";"; // debug player position
 	// collition check with enemy
 }
@@ -44,16 +48,16 @@ void PlatformerGame::Input() //make keys async? (this is now assync)
 { //might be problems with key presses not registered otherwhise	
 	player.states &= ~0b00001111; // resets the movment state
 
-	if (GetAsyncKeyState('W') & 0x8000) {
+	if ((GetAsyncKeyState('W') & 0x8000) || (GetAsyncKeyState(VK_UP) & 0x8000)) {
 		player.states |= player.W;
 	}
-	if (GetAsyncKeyState('A') & 0x8000) {
+	if ((GetAsyncKeyState('A') & 0x8000) || (GetAsyncKeyState(VK_LEFT) & 0x8000)) {
 		player.states |= player.A;
 	}
-	if (GetAsyncKeyState('S') & 0x8000) {
+	if ((GetAsyncKeyState('S') & 0x8000) || (GetAsyncKeyState(VK_DOWN) & 0x8000)) {
 		player.states |= player.S;
 	}
-	if (GetAsyncKeyState('D') & 0x8000) {
+	if ((GetAsyncKeyState('D') & 0x8000) || (GetAsyncKeyState(VK_RIGHT) & 0x8000)) {
 		player.states |= player.D;
 	}
 	/* Why 0x8000 and why &
@@ -69,18 +73,16 @@ void PlatformerGame::Input() //make keys async? (this is now assync)
 	*/
 }
 
-void PlatformerGame::Render()
+void PlatformerGame::Render() // need a good way of clearing the positions that already where used
 {
-	Drawing::draw(player);
 	for (int y = 0; y < 16; y++) {
 		for (int x = 0; x < 64; x++) {
-			Drawing::draw(mapp[x][y]);
+			Drawing::draw(mapp[x+camerapos.x][y+camerapos.y]);
 		}
 	}
 }
 
-
-
+//some way to move this into entity or player / enemy itself would be good so we can remove the const uints from entity when typing player, would look nicer
 void PlatformerGame::move(Entity& entity) { 
 	// debug:
 	std::cout << "JT:" << ((entity.states >> 6) & 0b11) << ";iG:" << (entity.states & entity.isGrounded)
