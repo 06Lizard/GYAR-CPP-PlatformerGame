@@ -129,7 +129,10 @@
   <ItemGroup>
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Drawing.cpp" />
+    <ClCompile Include="Enemy1.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Flag.cpp" />
+    <ClCompile Include="Mapp.cpp" />
     <ClCompile Include="PlatformerGame.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -139,7 +142,10 @@
   <ItemGroup>
     <ClInclude Include="Block.h" />
     <ClInclude Include="Drawing.h" />
+    <ClInclude Include="Enemy1.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Flag.h" />
+    <ClInclude Include="Mapp.h" />
     <ClInclude Include="PlatformerGame.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Position.h" />

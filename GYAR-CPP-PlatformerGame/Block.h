@@ -1,17 +1,21 @@
 #pragma once
-#include "Position.h"
+#include "Text.h"
 
-class Block : public Position
+class Block
 {
 protected: // need to double check, but able to be changed if something inherits it
 	// seting of value
+	bool isCollision;
 	char texture;
 	short colour; 
 public:	
-	Block(char texture, short colour, Position pos) : texture(texture), colour(colour), Position(pos) {}
-	Block(char texture, short colour, short x, short y) : texture(texture), colour(colour), Position(x, y) {}
-	Block() : texture(' '), colour(0), Position(0, 0) {}
+	Block(char texture, short colour, bool collision) 
+		: texture(texture), colour(colour), isCollision(collision) {}
+	Block() : texture(' '), colour(0), isCollision(false) {}
+	virtual ~Block() {}
 
+	bool getCollision() const;
 	char getTexture() const;
 	short getColour() const;
+	virtual void Update();	
 };

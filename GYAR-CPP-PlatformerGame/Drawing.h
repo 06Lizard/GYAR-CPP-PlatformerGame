@@ -14,9 +14,10 @@ public: // moreso writing :)
 	void formatting(); // default formatting
 
 public:
-	static void draw(const Position& pos, char texture, int colour, int backround);
+	/*static void draw(const Position& pos, char texture, int colour, int backround);
 	static void draw(const Position& pos, char texture, int colour);
-	static void draw(Block& block);
+	static void draw(Entity& Entity);*/
+	//static void drawMapp(const Position& cameraPos, const Block mapp[screenHight][screenHight]);
 };
 
 // should be quite enough
