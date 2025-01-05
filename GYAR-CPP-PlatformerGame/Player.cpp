@@ -118,7 +118,7 @@ void Player::Collision()
 		//	//lower flag
 		//	//render
 		//}
-		mapp->LvLFinished();
+		mapp->LvLFinished();		
 	}
 	
 	///*tmp*/mapp->mapp[x][y]->Update();

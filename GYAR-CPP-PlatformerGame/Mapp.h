@@ -17,11 +17,12 @@ public:
 	std::vector<std::vector<char>> mapp; // 2D vector of Block identifiers
 
 public:
-	Mapp(bool* running) : runningPtr(running), lvl(0) { Start(); }
+	Mapp(bool* running) : runningPtr(running), lvl(0) { Initzialize(); }
 	~Mapp();
-	void Start();
+	void Initzialize();
 	void ResetLvL();	
 	void LvLFinished();
+	short getLvL() { return lvl; }
 
 private:
 	void LoadLvL();

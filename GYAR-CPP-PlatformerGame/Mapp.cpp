@@ -4,7 +4,7 @@ Mapp::~Mapp() {
 	mapp.clear();
 }
 
-void Mapp::Start()
+void Mapp::Initzialize()
 {
 	LvL0();
 }
