@@ -4,9 +4,14 @@
 
 class Player : public Entity
 {
+private:
+	static const short _health = 3;
+	static const char _texture = '#';
+	static const short _colour = Text::Red;
+	static const bool _collision = false;
 public:
-	Player(short health, char texture, short colour, bool collision, short x, short y, Mapp *mapp)		
-		: Entity(health, texture, colour, collision, x, y, mapp) {}
+	Player(short x, short y, Mapp *mapp)		
+		: Entity(_health, _texture, _colour, _collision, x, y, mapp) {}
 	
 	short getHealth() const;
 	void Update() override;

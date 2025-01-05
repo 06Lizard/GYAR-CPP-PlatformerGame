@@ -7,7 +7,7 @@ void Enemy1::Update() {
 
 void Enemy1::Move() {
 	// is grounded check
-	if (!mapp->mapp[x][y + 1]->getCollision()) {
+	if (!BlockManager::getCollision(mapp->mapp[x][y + 1])) {
 		y++; // fall
 		states &= ~Down;
 		return;
@@ -19,16 +19,16 @@ void Enemy1::Move() {
 
 	// Right & !Right
 	if (states & Right) {
-		if (x < mapp->width-1 && !mapp->mapp[x + 1][y]->getCollision())
+		if (x < mapp->width-1 && !BlockManager::getCollision(mapp->mapp[x + 1][y]))
 			x++;
-		else if (x > 0 && !mapp->mapp[x - 1][y]->getCollision()) {
+		else if (x > 0 && !BlockManager::getCollision(mapp->mapp[x - 1][y])) {
 			states &= ~Right;
 			x--;
 		}			
 	} 
-	else if (x > 0 && !mapp->mapp[x - 1][y]->getCollision())
+	else if (x > 0 && !BlockManager::getCollision(mapp->mapp[x - 1][y]))
 		x--;
-	else if (x < mapp->width-1 && !mapp->mapp[x + 1][y]->getCollision()) {
+	else if (x < mapp->width-1 && !BlockManager::getCollision(mapp->mapp[x + 1][y])) {
 		states |= Right;
 		x++;
 	}

@@ -27,7 +27,7 @@
     <ClCompile Include="Position.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Block.cpp">
+    <ClCompile Include="BlockManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
@@ -45,7 +45,7 @@
     <ClCompile Include="Mapp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Flag.cpp">
+    <ClCompile Include="GraphicBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,7 +59,7 @@
     <ClInclude Include="Position.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Block.h">
+    <ClInclude Include="BlockManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
@@ -77,7 +77,7 @@
     <ClInclude Include="Mapp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Flag.h">
+    <ClInclude Include="GraphicBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

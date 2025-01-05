@@ -1,7 +1,6 @@
 #include "Mapp.h"
-#include <iostream>
-Mapp::~Mapp() {	
-	ClearMapp();
+
+Mapp::~Mapp() {		
 	mapp.clear();
 }
 
@@ -16,7 +15,7 @@ void Mapp::ResetLvL()
 }
 
 void Mapp::LvLFinished() {
-	//ClearMapp();
+	mapp.clear();
 
 	lvl++;
 	ResetLvL();
@@ -38,27 +37,27 @@ void Mapp::GameWon() {
 void Mapp::LvL0()
 {
 	// clear up before writing to prevent memory leaks
-	//ClearMapp();
+	mapp.clear();
 
 	// set size
-	mapp.resize(width, std::vector<Block*>(hight, new Block())); // restucturing code to have Block() be the actual blocks and the empty positions being nullptr would remove a bunch of releases and speed up efichency however needs a late restructuring of code	
+	mapp.resize(width, std::vector<char>(hight, NULL)); // restucturing code to have Block() be the actual blocks and the empty positions being nullptr would remove a bunch of releases and speed up efichency however needs a late restructuring of code	
 
 	// set the mapp
-		// setting blocks to already Block initialized positions causes memory leaks and requires first deliting the current block
+			// setting blocks to already Block initialized positions causes memory leaks and requires first deliting the current block
 	// floor
 	for (int x = 0; x < width; x++) {
-		mapp[x][16] = new Block('=', Text::Green, true);
+		mapp[x][16] = BlockManager::ground; //new Block('=', Text::Green, true);
 	}
 	// platform
 	for (int x = 8; x < 12; x++) {
-		mapp[x][13] = new Block('=', Text::Green, true);
+		mapp[x][13] = BlockManager::ground; //new Block('=', Text::Green, true);
 	}
 	//lone block
-	mapp[3][15] = new Block('=', Text::Green, true);
+	mapp[3][15] = BlockManager::ground; // new Block('=', Text::Green, true);
 
 	/*flag*/for (short y = 11; y < 16; y++) {
-		mapp[width - 1][y] = new FlagPole();
-	}
+		mapp[width - 1][y] = BlockManager::flagPole; //new FlagPole();
+	} mapp[width - 1][10] = BlockManager::flag; 
 }
 
 void Mapp::LvL1()
@@ -69,8 +68,4 @@ void Mapp::LvL1()
 void Mapp::LvL2()
 {
 	LvLFinished();
-}
-
-void Mapp::ClearMapp() {
-	// memory leaks iminent
 }

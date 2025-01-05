@@ -1,12 +1,14 @@
 #pragma once
 #include <stdint.h>
 #include "Mapp.h"
-#include "Block.h"
+#include "GraphicBase.h"
 #include "Position.h"
 
-class Entity : public Block, public Position
+class Entity : public GraphicBase, public Position
 {
 protected:
+	char texture;
+
 	short health;
 	Mapp *mapp;
 public:
@@ -27,7 +29,7 @@ protected:
 
 public:
 	Entity(short health, char texture, short colour, bool collision, short x, short y, Mapp *mapp)
-		: health(health), Block(texture, colour, collision), Position(x, y), mapp(mapp) {}
+		: health(health), GraphicBase(texture, colour, collision), Position(x, y), mapp(mapp) {}
 	virtual ~Entity() {}
 
 	short getHealth() const;
