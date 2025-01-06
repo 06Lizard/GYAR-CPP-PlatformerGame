@@ -23,7 +23,6 @@ public:
 
 	static bool getCollision(const char& block);
 	static char getTexture(const char& block);
-	static char getType(const char& block);
 	static short getColour(const char& block);
 	//virtual void Update();
 };

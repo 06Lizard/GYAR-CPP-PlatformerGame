@@ -10,7 +10,7 @@ public:
 	GraphicBase(char texture, short colour, bool collision)
 		: texture(texture), colour(colour), isCollision(collision) {}
 	GraphicBase() : texture(' '), colour(0), isCollision(false) {}
-	virtual ~GraphicBase() {}
+	virtual ~GraphicBase() = default;
 
 	bool getCollision();
 	char getTexture();

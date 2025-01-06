@@ -1,16 +1,13 @@
 #pragma once
 #include <stdint.h>
-#include "Mapp.h"
 #include "GraphicBase.h"
 #include "Position.h"
+#include "LvLManager.h"
 
 class Entity : public GraphicBase, public Position
 {
 protected:
-	char texture;
-
 	short health;
-	Mapp *mapp;
 public:
 	// holds Entity's variables / flags
 	uint8_t states = 0b00000000;
@@ -28,9 +25,9 @@ protected:
 	virtual void Move() = 0;
 
 public:
-	Entity(short health, char texture, short colour, bool collision, short x, short y, Mapp *mapp)
-		: health(health), GraphicBase(texture, colour, collision), Position(x, y), mapp(mapp) {}
-	virtual ~Entity() {}
+	Entity(short health, char texture, short colour, bool collision, short x, short y)
+		: health(health), GraphicBase(texture, colour, collision), Position(x, y) {}
+	virtual ~Entity() = default;
 
 	short getHealth() const;
 	virtual void Update() = 0;

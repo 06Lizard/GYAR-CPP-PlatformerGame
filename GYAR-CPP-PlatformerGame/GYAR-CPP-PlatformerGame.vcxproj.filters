@@ -42,10 +42,16 @@
     <ClCompile Include="Enemy1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Mapp.cpp">
+    <ClCompile Include="LvLManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GraphicBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,10 +80,16 @@
     <ClInclude Include="Enemy1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Mapp.h">
+    <ClInclude Include="LvLManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GraphicBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

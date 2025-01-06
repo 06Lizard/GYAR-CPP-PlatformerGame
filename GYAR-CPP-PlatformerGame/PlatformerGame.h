@@ -5,30 +5,23 @@
 #include <conio.h> // allows for _getch witch waits for keypress
 #include "Drawing.h"
 #include "Player.h"
-#include "Entity.h"
-#include "Enemy1.h"
-#include "Mapp.h"
+#include "LvLManager.h"
 #include "BlockManager.h"
 
 //const int TARGET_FPS = 60;
 //const std::chrono::milliseconds TARGET_FRAME_TIME(1000 / TARGET_FPS);  // Time per frame (16 ms for 60 FPS) 
 
 class PlatformerGame {
-private:
-	static const short screenWidth = 32;
-	static const short screenHight = 16;	
-
+private:	
 	short score = 0;
 	bool running;
 
-	Player player = Player(10, 10, &mapp);
+	Player player;
 	Position cameraPos = Position();	
-	Mapp mapp;	
-	std::vector<Entity*> entities;
-	/* test */Enemy1 enemy1 = Enemy1(5, 5, &mapp, false);
+	LvLManager _LvLManager;
 
 public:
-	PlatformerGame(): running(true), mapp(&running) {}
+	PlatformerGame() : running(true), _LvLManager(&running, &cameraPos), player(10, 10, &_LvLManager) {}
 	
 	void Run();
 

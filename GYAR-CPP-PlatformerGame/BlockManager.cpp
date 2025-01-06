@@ -28,11 +28,6 @@ char BlockManager::getTexture(const char& block)
 	}
 }
 
-char BlockManager::getType(const char& block)
-{
-	return block;
-}
-
 short BlockManager::getColour(const char& block)
 {
 	switch (block)
