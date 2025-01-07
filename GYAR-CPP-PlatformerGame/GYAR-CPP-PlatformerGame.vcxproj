@@ -147,6 +147,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enemy1.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="ForwardDeclaredLists.h" />
     <ClInclude Include="GraphicBase.h" />
     <ClInclude Include="LvLManager.h" />
     <ClInclude Include="PlatformerGame.h" />

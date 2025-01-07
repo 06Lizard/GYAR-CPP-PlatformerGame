@@ -121,11 +121,11 @@ void Player::Collision()
 		_LvLManager->LvLFinished();
 	}
 	
-	/*for (Enemy* enemy : mapp->enemies) {
-		if (x == enemy.x && y == enemy.y) {
+	for (auto& enemy : _LvLManager->entitiesList->enemies) {
+		if (x == enemy->x && y == enemy->y) {
 			health--;
 		}
-	}*/
+	}
 
 	///*tmp*/mapp->mapp[x][y]->Update();
 }

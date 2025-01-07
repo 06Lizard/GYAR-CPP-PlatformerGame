@@ -1,15 +1,17 @@
-#include "LvLManager.h"
-#include "Projectile.h"
-#include "Enemy.h"
-#include "Enemy1.h"
+//#include "LvLManager.h"
+//#include "Projectile.h"
+//#include "Enemy.h"
+//#include "Enemy1.h"
+#include "ForwardDeclaredLists.h"
 
-struct LvLManager::ForwardDeclaredLists {
-	std::vector<std::unique_ptr<Enemy>> enemies;
-	std::vector<std::unique_ptr<Projectile>> projectiles;
-
-	ForwardDeclaredLists() = default;
-	~ForwardDeclaredLists() = default;
-};
+//struct LvLManager::ForwardDeclaredLists {
+//public:
+//	std::vector<std::unique_ptr<Enemy>> enemies;
+//	std::vector<std::unique_ptr<Projectile>> projectiles;
+//
+//	ForwardDeclaredLists() = default;
+//	~ForwardDeclaredLists() = default;
+//};
 
 LvLManager::LvLManager(bool* running, Position* cameraPos)
 	: runningPtr(running), cameraPos(cameraPos), lvl(0), entitiesList(std::make_unique<ForwardDeclaredLists>()) {
@@ -58,9 +60,12 @@ void LvLManager::Render() {
 		auto x = enemy->x;
 		auto y = enemy->y;
 
+		// x < camraPos->x+screenWidth
+		// x > camraPos->x;
+
 		if (cameraPos->x <= x && x < cameraPos->x + screenWidth &&
 			cameraPos->y <= y && y < cameraPos->y + screenHight && !mapp[x][y]) {
-			std::cout << "\033[" << y + 1 << ";" << x + 1 << "H\033[" << enemy->getColour() << "m" << enemy->getTexture();
+			std::cout << "\033[" << y-cameraPos->y + 1 << ";" << x-cameraPos->x + 1 << "H\033[" << enemy->getColour() << "m" << enemy->getTexture();
 		}
 	}
 	for (auto& projectile : entitiesList->projectiles)

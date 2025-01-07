@@ -41,6 +41,7 @@ public:
 	void LvLFinished();
 	void Update();
 	void Render();
+
 	short getLvL() { return lvl; }
 
 	void addEnemy(std::unique_ptr<Enemy> enemy);

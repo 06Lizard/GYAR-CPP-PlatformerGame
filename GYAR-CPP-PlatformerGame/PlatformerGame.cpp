@@ -1,5 +1,16 @@
 #include "PlatformerGame.h"
 
+// forward declared from LvL manager
+//struct LvLManager::ForwardDeclaredLists {
+//public:
+//	std::vector<std::unique_ptr<Enemy>> enemies;
+//	std::vector<std::unique_ptr<Projectile>> projectiles;
+//
+//	ForwardDeclaredLists() = default;
+//	~ForwardDeclaredLists() = default;
+//};
+#include "ForwardDeclaredLists.h"
+
 void PlatformerGame::Run() {
 	std::cout << "\033[0m"; // reset formating;
 	std::cout << "\033[?25l"; // hide cursor
@@ -105,13 +116,13 @@ void PlatformerGame::Render() {
 			}
 
 			// Temporary area for entity rendering
-			/*for (auto& enemy : _LvLManager.entitiesList->enemies)
-			{
-				if (enemy->x == worldX && enemy->y == worldY)
-					std::cout << "\033[" << y + 1 << ";" << x + 1 << "H\033[" << enemy->getColour() << "m" << enemy->getTexture();
-			}*/
+			//for (auto& enemy : _LvLManager.entitiesList->enemies)
+			//{
+			//	if (enemy->x == worldX && enemy->y == worldY)
+			//		std::cout << "\033[" << y + 1 << ";" << x + 1 << "H\033[" << enemy->getColour() << "m" << enemy->getTexture();
+			//}
 		}
-
+		// abstract enemy and projectile rendering to the LvLManager instead
 		_LvLManager.Render();
 	}// some weird bug where y 0 dosnt get drawn, it starts drawing y1 to the left edge, prop same for x top
 
