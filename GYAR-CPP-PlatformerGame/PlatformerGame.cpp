@@ -32,7 +32,7 @@ void PlatformerGame::Menue() {
 			menuOption = !menuOption;
 		if (GetAsyncKeyState(VK_RETURN) & 0x8000 || (GetAsyncKeyState(VK_SPACE) & 0x8000)) // VK_Return dosn't seem to work
 			if (menuOption)
-				Start();
+				GameLoop();
 			else return;		
 	}	
 }
@@ -40,9 +40,8 @@ void PlatformerGame::Menue() {
 void PlatformerGame::Initzialize() {
 	score = 0; // reset score
 
-	// set player pos
-	player.x = 10;
-	player.y = 10;
+	// reset player
+	player.Reset();
 
 	// set camera pos
 	cameraPos.x = player.x;
@@ -53,7 +52,7 @@ void PlatformerGame::Initzialize() {
 	_LvLManager.Initzialize();
 }	
 
-void PlatformerGame::Start()
+void PlatformerGame::GameLoop()
 {
 	Initzialize();
 
@@ -116,14 +115,14 @@ void PlatformerGame::Render() {
 			}
 
 			// Temporary area for entity rendering
-			//for (auto& enemy : _LvLManager.entitiesList->enemies)
-			//{
-			//	if (enemy->x == worldX && enemy->y == worldY)
-			//		std::cout << "\033[" << y + 1 << ";" << x + 1 << "H\033[" << enemy->getColour() << "m" << enemy->getTexture();
-			//}
+			for (auto& enemy : _LvLManager.entitiesList->enemies)
+			{
+				if (enemy->x == worldX && enemy->y == worldY)
+					std::cout << "\033[" << y + 1 << ";" << x + 1 << "H\033[" << enemy->getColour() << "m" << enemy->getTexture();
+			}
 		}
 		// abstract enemy and projectile rendering to the LvLManager instead
-		_LvLManager.Render();
+		//_LvLManager.Render();
 	}// some weird bug where y 0 dosnt get drawn, it starts drawing y1 to the left edge, prop same for x top
 
 	// debug

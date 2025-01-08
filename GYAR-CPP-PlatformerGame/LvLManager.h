@@ -6,6 +6,7 @@
 #include "BlockManager.h"
 #include "Position.h"
 
+class Player;
 class Enemy;
 class Enemy1;
 class Projectile;
@@ -41,8 +42,9 @@ private:
 	LvLManagerHandle handle;
 
 	int TMP = 0;
-	bool* runningPtr;
-	Position* cameraPos;
+	bool& runningPtr;
+	Position& cameraPos;
+	Player& player;
 	short lvl;
 public:
 	static const short screenWidth = 32;
@@ -57,7 +59,7 @@ public:
 	// list of type entity to store enemies as they all derive from that
 
 public:
-	LvLManager(bool* running, Position* cameraPos);
+	LvLManager(bool& running, Position& cameraPos, Player& player);
 	~LvLManager();
 
 	void Initzialize();

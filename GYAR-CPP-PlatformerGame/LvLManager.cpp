@@ -13,8 +13,8 @@
 //	~ForwardDeclaredLists() = default;
 //};
 
-LvLManager::LvLManager(bool* running, Position* cameraPos)
-	: runningPtr(running), cameraPos(cameraPos), lvl(0), entitiesList(std::make_unique<ForwardDeclaredLists>()),
+LvLManager::LvLManager(bool& running, Position& cameraPos, Player& player)
+	: runningPtr(running), cameraPos(cameraPos), player(player), lvl(0), entitiesList(std::make_unique<ForwardDeclaredLists>()),
 	handle(mapp, [this](short x, short y, bool facingRight) { addProjectile(x, y, facingRight);	}) 
 {
 	Initzialize();
@@ -44,8 +44,8 @@ void LvLManager::Update() {
 		auto x = enemy->x;
 		auto y = enemy->y;
 
-		if (cameraPos->x <= x && x < cameraPos->x + screenWidth &&
-			cameraPos->y <= y && y < cameraPos->y + screenHight) {
+		if (cameraPos.x <= x + 2 && x - 2 < cameraPos.x + screenWidth &&
+			cameraPos.y <= y + 2 && y - 2 < cameraPos.y + screenHight) {
 			enemy->Update();  // polymorphic call
 		}
 	}
@@ -65,9 +65,9 @@ void LvLManager::Render() {
 		// x < camraPos->x+screenWidth
 		// x > camraPos->x;
 
-		if (cameraPos->x <= x && x < cameraPos->x + screenWidth &&
-			cameraPos->y <= y && y < cameraPos->y + screenHight && !mapp[x][y]) {
-			std::cout << "\033[" << y-cameraPos->y + 1 << ";" << x-cameraPos->x + 1 << "H\033[" << enemy->getColour() << "m" << enemy->getTexture();
+		if (cameraPos.x <= x && x < cameraPos.x + screenWidth &&
+			cameraPos.y <= y && y < cameraPos.y + screenHight && !mapp[x][y]) {
+			std::cout << "\033[" << y-cameraPos.y + 1 << ";" << x-cameraPos.x + 1 << "H\033[" << enemy->getColour() << "m" << enemy->getTexture();
 		}
 	}
 	for (auto& projectile : entitiesList->projectiles)
@@ -75,8 +75,8 @@ void LvLManager::Render() {
 		auto x = projectile->x;
 		auto y = projectile->y;
 
-		if (cameraPos->x <= x && x < cameraPos->x + screenWidth &&
-			cameraPos->y <= y && y < cameraPos->y + screenHight && !mapp[x][y]) {
+		if (cameraPos.x <= x && x < cameraPos.x + screenWidth &&
+			cameraPos.y <= y && y < cameraPos.y + screenHight && !mapp[x][y]) {
 			std::cout << "\033[" << y + 1 << ";" << x + 1 << "H\033[" << projectile->getColour() << "m" << projectile->getTexture();
 		}
 	}
@@ -100,7 +100,7 @@ void LvLManager::LoadLvL() {
 }
 
 void LvLManager::GameWon() {
-	*runningPtr = false;
+	runningPtr = false;
 }
 
 void LvLManager::LvL0()
@@ -130,6 +130,10 @@ void LvLManager::LvL0()
 
 	// set the enemies			
 	addEnemy(std::make_unique<Enemy1>(5, 5, false, getHandle()));	
+
+	// set player pos
+	player.x = 10;
+	player.y = 10;
 }
 
 void LvLManager::LvL1()

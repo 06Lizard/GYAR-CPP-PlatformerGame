@@ -3,5 +3,5 @@
 
 int main() {
 	PlatformerGame game;
-	game.Run();
+	game.Run();	
 }

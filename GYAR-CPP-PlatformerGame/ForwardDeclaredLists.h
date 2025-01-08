@@ -1,5 +1,6 @@
 #pragma once
 #include "LvLManager.h"
+#include "Player.h"
 #include "Projectile.h"
 #include "Enemy.h"
 #include "Enemy1.h"

@@ -21,14 +21,14 @@ private:
 	LvLManager _LvLManager;
 
 public:
-	PlatformerGame() : running(true), _LvLManager(&running, &cameraPos), player(10, 10, _LvLManager) {}
+	PlatformerGame() : running(true), _LvLManager(running, cameraPos, player), player(10, 10, _LvLManager) {}
 	
 	void Run();
 
 private:
 	void Menue();
 	void Initzialize();
-	void Start();
+	void GameLoop();
 	void GameOver();
 	void Update();
 	void Render();
