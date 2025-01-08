@@ -10,9 +10,9 @@ private:
 	static const bool _collision = false;
 
 public:
-	Enemy1(short x, short y, bool faceRight, const LvLManager::LvLManagerHandle& _LvLManagerHandle)
+	Enemy1(short x, short y, bool faceRight, const LvLManager::LvLManagerHandle& _LvLManagerHandle)	
 		//: Entity(1, 'E', 93, x, y)
-		: Enemy(_health, _texture, _colour, _collision, x, y, faceRight, _LvLManagerHandle) {
+		: Enemy(_health, _texture, _colour, _collision, x, y, faceRight, _LvLManagerHandle) {		
 		if (faceRight) states &= Right;
 	}
 	void Update() override;

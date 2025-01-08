@@ -78,7 +78,7 @@ void PlatformerGame::GameOver() {
 
 void PlatformerGame::Update()
 { // problem can arise later if mapp is acsesed after player finishes LvL
-	//_LvLManager.Update();
+	_LvLManager.Update();
 	
 	player.Update(); // potentially put update camera and entity rendering in a if statment running on a player.update return steming from collition check, here by we can also swap player texture to a backround colour alowing render to show what player died from	
 
@@ -143,14 +143,13 @@ void PlatformerGame::UpdateCamera() {
 	//const short cameraBottomBound = screenHight-2;
 
 	// Horizontal camera movement
-	std::cout << "\033[26;5H" << player.x;
 	if (player.x < cameraPos.x + cameraLeftBound) {
 		cameraPos.x = player.x - cameraLeftBound;
 	}
 	else if (player.x > cameraPos.x + cameraRightBound) {
 		cameraPos.x = player.x - cameraRightBound;
 	}
-	std::cout << "\033[27;5H" << player.x;
+
 	/*// Vertical camera movement
 	if (player.y < cameraPos.y + cameraTopBound) {
 		cameraPos.y = player.y - cameraTopBound;

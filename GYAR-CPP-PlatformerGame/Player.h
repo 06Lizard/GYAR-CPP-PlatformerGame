@@ -10,10 +10,10 @@ private:
 	static const char _texture = '#';
 	static const short _colour = Text::Red;
 	static const bool _collision = false;
-	LvLManager* _LvLManager;
+	LvLManager& _LvLManager;
 
 public:
-	Player(short x, short y, LvLManager *_LvLManager)
+	Player(short x, short y, LvLManager& _LvLManager)
 		: Entity(_health, _texture, _colour, _collision, x, y), _LvLManager(_LvLManager) {}
 	
 	short getHealth() const;

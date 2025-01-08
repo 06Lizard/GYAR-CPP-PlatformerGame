@@ -21,7 +21,7 @@ private:
 	LvLManager _LvLManager;
 
 public:
-	PlatformerGame() : running(true), _LvLManager(&running, &cameraPos), player(10, 10, &_LvLManager) {}
+	PlatformerGame() : running(true), _LvLManager(&running, &cameraPos), player(10, 10, _LvLManager) {}
 	
 	void Run();
 

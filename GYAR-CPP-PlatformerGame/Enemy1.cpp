@@ -5,7 +5,7 @@ void Enemy1::Update() {
 	Move();
 }
 
-void Enemy1::Move() {	
+void Enemy1::Move() {
 	// is grounded check
 	if (!BlockManager::getCollision(_LvLManagerHandle.mapp[x][y + 1])) {
 		y++; // fall

@@ -14,7 +14,9 @@
 //};
 
 LvLManager::LvLManager(bool* running, Position* cameraPos)
-	: runningPtr(running), cameraPos(cameraPos), lvl(0), entitiesList(std::make_unique<ForwardDeclaredLists>()) {
+	: runningPtr(running), cameraPos(cameraPos), lvl(0), entitiesList(std::make_unique<ForwardDeclaredLists>()),
+	handle(mapp, [this](short x, short y, bool facingRight) { addProjectile(x, y, facingRight);	}) 
+{
 	Initzialize();
 }
 
@@ -127,7 +129,7 @@ void LvLManager::LvL0()
 	} mapp[width - 1][10] = BlockManager::flag; 
 
 	// set the enemies			
-	addEnemy(std::make_unique<Enemy1>(5, 5, false, getHandle()));
+	addEnemy(std::make_unique<Enemy1>(5, 5, false, getHandle()));	
 }
 
 void LvLManager::LvL1()

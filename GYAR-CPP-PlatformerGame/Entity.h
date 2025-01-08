@@ -19,7 +19,7 @@ public:
 	static const uint8_t Right			= 1 << 3; // 0000 1000
 	static const uint8_t isGrounded		= 1 << 4; // 0001 0000
 	static const uint8_t isJump			= 1 << 5; // 0010 0000
-	static const uint8_t jumpTime		= 0b11000000; // 2 bit variable 
+	static const uint8_t jumpTime		= 0b11000000; // 2 bit variable 	
 
 protected:
 	virtual void Move() = 0;

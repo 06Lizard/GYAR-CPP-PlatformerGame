@@ -47,7 +47,7 @@ void Player::Move() {
 	// 
 	
 	// is grounded check
-	if (BlockManager::getCollision(_LvLManager->mapp[x][y + 1]))
+	if (BlockManager::getCollision(_LvLManager.mapp[x][y + 1]))
 		states |= isGrounded;
 	else states &= ~isGrounded;
 
@@ -61,7 +61,7 @@ void Player::Move() {
 
 	// 2. if not grounded and not jumping, fall down
 	else if (!(states & isGrounded) && !(states & isJump)) {
-		if (BlockManager::getCollision(_LvLManager->mapp[x][y + 1])) {
+		if (BlockManager::getCollision(_LvLManager.mapp[x][y + 1])) {
 			states |= isGrounded; // sets the isGrounded flag
 		}
 		else {
@@ -71,7 +71,7 @@ void Player::Move() {
 
 	// 3. begin jumping if w is pressed and player is on ground and the sky is clear above
 	else if (states & Up && (states & isGrounded)) {
-		if (!BlockManager::getCollision(_LvLManager->mapp[x][y - 1])) {
+		if (!BlockManager::getCollision(_LvLManager.mapp[x][y - 1])) {
 			states |= isJump;          // sets the isJump flag
 			states &= ~isGrounded;     // clear the isGrounded flag
 			y--;                    // move up
@@ -85,7 +85,7 @@ void Player::Move() {
 		// I really wanna remove this uint8_t initialisation cause it wastes a entire byte of memory << removed
 		//uint8_t jumpTime = (entity.states >> 6) & 0b11; // extract jumpTime
 		// ^^ that code above is a clear example of wasting resorses, using a whole byte for no reason. And additional overhead for the construction and deconstruction :<
-		if (((states >> 6) & 0b11) < 3 && !BlockManager::getCollision(_LvLManager->mapp[x][y - 1])) {
+		if (((states >> 6) & 0b11) < 3 && !BlockManager::getCollision(_LvLManager.mapp[x][y - 1])) {
 			y--; // Move up
 			states = (states & ~jumpTime) | (((states >> 6) & 0b11) + 1) << 6; // increment jumpTime directly now like it allways should've been
 		}
@@ -96,11 +96,11 @@ void Player::Move() {
 
 	// Left & Right
 	if (states & Left && !(states & Right)) {
-		if (x > 0 && !BlockManager::getCollision(_LvLManager->mapp[x - 1][y])) // colition check & border
+		if (x > 0 && !BlockManager::getCollision(_LvLManager.mapp[x - 1][y])) // colition check & border
 			x--;
 	}
 	else if (!(states & Left) && states & Right) {
-		if (x < _LvLManager->width-1 && !BlockManager::getCollision(_LvLManager->mapp[x + 1][y])) // colition check & border
+		if (x < _LvLManager.width-1 && !BlockManager::getCollision(_LvLManager.mapp[x + 1][y])) // colition check & border
 			x++;
 	}
 }
@@ -109,7 +109,7 @@ void Player::Move() {
 
 void Player::Collision() 
 {
-	char block = _LvLManager->mapp[x][y];
+	char block = _LvLManager.mapp[x][y];
 	if (block == BlockManager::flag || block == BlockManager::flagPole) // if player is on flag
 	{
 		//while (dynamic_cast<FlagPole*>(mapp->mapp[x][y-1])) {
@@ -118,13 +118,17 @@ void Player::Collision()
 		//	//lower flag
 		//	//render
 		//}
-		_LvLManager->LvLFinished();
+		_LvLManager.LvLFinished();
 	}
 	
-	for (auto& enemy : _LvLManager->entitiesList->enemies) {
+	for (auto& enemy : _LvLManager.entitiesList->enemies) {
 		if (x == enemy->x && y == enemy->y) {
 			health--;
 		}
+	}
+
+	if (health < 0) {
+		_LvLManager.LvLFinished();
 	}
 
 	///*tmp*/mapp->mapp[x][y]->Update();

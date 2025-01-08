@@ -15,7 +15,31 @@ class Projectile;
 
 class LvLManager
 {	
+public:
+	// nested MappHandle allowing limited acses to enemies and projectiles
+	class LvLManagerHandle {
+	private:
+		std::function<void(short, short, bool)> createProjectileCallBack;
+
+	public:
+		const std::vector<std::vector<char>>& mapp; // direct acses ti mapp
+
+		// constructor 
+		LvLManagerHandle(const std::vector<std::vector<char>>& mappData,
+				std::function<void(short, short, bool)> projectileCallBack)
+			: mapp(mappData), createProjectileCallBack(projectileCallBack) {}
+
+		// spawn a projectile
+		void createProjectile(short x, short y, bool facingRight) {
+			if (createProjectileCallBack) {
+				createProjectileCallBack(x, y, facingRight);
+			}
+		}		
+	};
+
 private:
+	LvLManagerHandle handle;
+
 	int TMP = 0;
 	bool* runningPtr;
 	Position* cameraPos;
@@ -24,7 +48,7 @@ public:
 	static const short screenWidth = 32;
 	static const short screenHight = 16;
 	static const short width = 64;
-	static const short hight = 32;	
+	static const short hight = 32;		
 
 	// making the forward declaed class lists uniqe ptr becuse icbbam
 	struct ForwardDeclaredLists;
@@ -47,31 +71,8 @@ public:
 	void addEnemy(std::unique_ptr<Enemy> enemy);
 	void addProjectile(short x, short y, bool isRight);
 
-	// nested MappHandle allowing limited acses to enemies and projectiles
-	class LvLManagerHandle {
-	private:
-		std::function<void(short, short, bool)> createProjectileCallBack;
-
-	public:
-		const std::vector<std::vector<char>>& mapp; // direct acses ti mapp
-
-		// constructor 
-		LvLManagerHandle(const std::vector<std::vector<char>>& mappData,
-				std::function<void(short, short, bool)> projectileCallBack)
-			: mapp(mappData), createProjectileCallBack(projectileCallBack) {}
-
-		// spawn a projectile
-		void createProjectile(short x, short y, bool facingRight) {
-			if (createProjectileCallBack) {
-				createProjectileCallBack(x, y, facingRight);
-			}
-		}		
-	};
-
-	LvLManagerHandle getHandle() {
-		return LvLManagerHandle(mapp, [this](short x, short y, bool facingRight) {
-			addProjectile(x, y, facingRight);
-			});
+	LvLManagerHandle& getHandle() {
+		return handle;
 	}
 
 private:
