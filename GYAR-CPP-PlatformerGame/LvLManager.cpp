@@ -32,12 +32,14 @@ void LvLManager::ResetLvL()
 	LoadLvL();
 }
 
-void LvLManager::LvLFinished() {
+void LvLManager::LvLFinished() 
+{
 	lvl++;
 	ResetLvL();
 }
 
-void LvLManager::Update() {
+void LvLManager::Update() 
+{
 	// only update enemies on the screen
 	for (auto& enemy : entitiesList->enemies)
 	{
@@ -82,15 +84,18 @@ void LvLManager::Render() {
 	}
 }
 
-void LvLManager::addEnemy(std::unique_ptr<Enemy> enemy) {
+void LvLManager::addEnemy(std::unique_ptr<Enemy> enemy) 
+{
 	entitiesList->enemies.push_back(std::move(enemy));
 }
 
-void LvLManager::addProjectile(short x, short y, bool isRight) {
+void LvLManager::addProjectile(short x, short y, bool isRight) 
+{
 	entitiesList->projectiles.push_back(std::make_unique<Projectile>(x, y, isRight, getHandle()));
 }
 
-void LvLManager::LoadLvL() {
+void LvLManager::LoadLvL() 
+{
 	switch (lvl) {
 	case 0: LvL0(); break;
 	case 1: LvL1(); break;
@@ -99,7 +104,8 @@ void LvLManager::LoadLvL() {
 	}
 }
 
-void LvLManager::GameWon() {
+void LvLManager::GameWon() 
+{
 	runningPtr = false;
 }
 

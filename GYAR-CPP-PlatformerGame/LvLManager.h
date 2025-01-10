@@ -46,6 +46,7 @@ private:
 	Position& cameraPos;
 	Player& player;
 	short lvl;
+
 public:
 	static const short screenWidth = 32;
 	static const short screenHight = 16;
@@ -69,7 +70,6 @@ public:
 	void Render();
 
 	short getLvL() { return lvl; }
-
 	void addEnemy(std::unique_ptr<Enemy> enemy);
 	void addProjectile(short x, short y, bool isRight);
 
