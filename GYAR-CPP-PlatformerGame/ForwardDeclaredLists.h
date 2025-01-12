@@ -1,4 +1,8 @@
 #pragma once
+#include <thread>
+#include <vector>
+#include <chrono>
+#include <conio.h> // allows for _getch witch waits for keypress
 #include "LvLManager.h"
 #include "Player.h"
 #include "Projectile.h"

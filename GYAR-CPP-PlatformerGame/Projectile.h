@@ -8,7 +8,7 @@ private:
 
 	static const short _health = 8;
 	static const char _texture = '*';
-	static const short _colour = Text::BrightYellow;
+	static const short _colour = Text::BrightMagenta;
 	static const bool _collision = false;
 	
 	const bool isRight;
@@ -20,6 +20,7 @@ public:
 	~Projectile() = default;
 
 	void Update() override;
+	void TakeDamage() override;
 
 private:
 	void Move() override;

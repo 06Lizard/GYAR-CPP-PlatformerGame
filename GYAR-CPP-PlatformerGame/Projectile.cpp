@@ -4,8 +4,12 @@ void Projectile::Update() {
 	// check if something is coliding with it rn
 	health--;
 	Move();
-	//if (health <= 0)
-	//	delete this;
+	if (health <= 0)
+		delete this;
+}
+
+void Projectile::TakeDamage() {
+	delete this;
 }
 
 void Projectile::Move() {
@@ -13,5 +17,6 @@ void Projectile::Move() {
 		x++;
 	else
 		x--;
-	// check if something is colliding with it rn
+	if (BlockManager::getCollision(_LvLManagerHandle.mapp[x][y]))
+		delete this;
 }

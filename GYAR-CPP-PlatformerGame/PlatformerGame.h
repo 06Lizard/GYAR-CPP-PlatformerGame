@@ -1,9 +1,6 @@
 #pragma once
-#include <chrono>
-#include <thread>
-#include <vector>
-#include <conio.h> // allows for _getch witch waits for keypress
-#include "Drawing.h"
+#include "ForwardDeclaredLists.h"
+//#include "Drawing.h"
 #include "Player.h"
 //#include "LvLManager.h"
 //#include "BlockManager.h"
@@ -13,7 +10,6 @@
 
 class PlatformerGame {
 private:	
-	short score = 0;
 	bool running;
 
 	Player player;
@@ -29,14 +25,7 @@ private:
 	void Menue();
 	void Initzialize();
 	void GameLoop();
-	void GameOver();
 	void Update();
-	void Render();
-	//void _Render(); // replaced with render
-	//void Input();
-
-private:
-
-	//void move(Entity& entity); // moved to entities themselves
+	void Render();	
 	void UpdateCamera();
 };

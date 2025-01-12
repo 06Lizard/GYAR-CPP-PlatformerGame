@@ -34,5 +34,5 @@ void Enemy1::Move() {
 	}
 
 	states &= ~Down;
-	//(x < 0 || x > mapp->width || y < 0 || y > mapp->height) ? destroy() : void();
+	if (x < 0 || x > LvLManager::width || y < 0 || y > LvLManager::hight) delete this;
 }

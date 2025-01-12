@@ -16,14 +16,14 @@
 LvLManager::LvLManager(bool& running, Position& cameraPos, Player& player)
 	: runningPtr(running), cameraPos(cameraPos), player(player), lvl(0), entitiesList(std::make_unique<ForwardDeclaredLists>()),
 	handle(mapp, [this](short x, short y, bool facingRight) { addProjectile(x, y, facingRight);	}) 
-{
-	Initzialize();
-}
+{}
 
 LvLManager::~LvLManager() = default;
 
 void LvLManager::Initzialize()
 {
+	score = 0; // reset score
+	lvl = 0;
 	LvL0();
 }
 
@@ -37,6 +37,15 @@ void LvLManager::LvLFinished()
 	lvl++;
 	ResetLvL();
 }
+
+void LvLManager::GameOver() {
+	std::cout << "\033[2J\033[0m\033[3;5H Game Over\033[4;5H Score: " << score << "\033[5;5H Level: " << _LvLManager.getLvL() << std::endl;
+	Beep(1000, 100);
+	std::this_thread::sleep_for(std::chrono::milliseconds(500));
+	_getch();
+	// we'll go back to the menue loop, be nice if we wen't back to the start of the menue function but eh
+}
+
 
 void LvLManager::Update() 
 {
