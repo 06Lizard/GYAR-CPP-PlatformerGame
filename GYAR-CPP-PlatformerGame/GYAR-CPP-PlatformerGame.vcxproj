@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlockManager.h" />
+    <ClInclude Include="DeltaTimeCounter.h" />
     <ClInclude Include="Drawing.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enemy1.h" />

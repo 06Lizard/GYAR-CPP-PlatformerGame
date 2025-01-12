@@ -1,4 +1,5 @@
 #include "PlatformerGame.h"
+#include "DeltaTimeCounter.h"
 
 void PlatformerGame::Run() {
 	std::cout << "\033[0m"; // reset formating;
@@ -50,12 +51,15 @@ void PlatformerGame::Initzialize() {
 void PlatformerGame::GameLoop()
 {
 	Initzialize();
+	DeltaTimeCounter deltaTimeCounter;
 
 	while (running)
 	{		
 		Render();
 		Update();
-				
+		deltaTimeCounter.Count();
+		deltaTimeCounter.Display(1, 17);
+		
 		std::this_thread::sleep_for(std::chrono::milliseconds(25)); // tmp framerate limiter
 	}
 }
