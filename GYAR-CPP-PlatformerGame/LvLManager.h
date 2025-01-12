@@ -46,6 +46,7 @@ private:
 	Position& cameraPos;
 	Player& player;
 	short lvl;
+	short score = 0;
 
 public:
 	static const short screenWidth = 32;
@@ -66,10 +67,10 @@ public:
 	void Initzialize();
 	void ResetLvL();	
 	void LvLFinished();
+	void GameOver();
 	void Update();
 	void Render();
 
-	short getLvL() { return lvl; }
 	void addEnemy(std::unique_ptr<Enemy> enemy);
 	void addProjectile(short x, short y, bool isRight);
 

@@ -16,15 +16,15 @@
 LvLManager::LvLManager(bool& running, Position& cameraPos, Player& player)
 	: runningPtr(running), cameraPos(cameraPos), player(player), lvl(0), entitiesList(std::make_unique<ForwardDeclaredLists>()),
 	handle(mapp, [this](short x, short y, bool facingRight) { addProjectile(x, y, facingRight);	}) 
-{
-	Initzialize();
-}
+{}
 
 LvLManager::~LvLManager() = default;
 
 void LvLManager::Initzialize()
 {
-	LvL0();
+	score = 0; // reset score
+	lvl = 0;
+	LoadLvL();
 }
 
 void LvLManager::ResetLvL()
@@ -37,6 +37,15 @@ void LvLManager::LvLFinished()
 	lvl++;
 	ResetLvL();
 }
+
+void LvLManager::GameOver() {
+	std::cout << "\033[2J\033[0m\033[3;5H Game Over\033[4;5H Score: " << score << "\033[5;5H Level: " << lvl << std::endl;
+	Beep(1000, 100);
+	std::this_thread::sleep_for(std::chrono::milliseconds(500));
+	_getch();
+	// we'll go back to the menue loop, be nice if we wen't back to the start of the menue function but eh
+}
+
 
 void LvLManager::Update() 
 {
@@ -96,6 +105,10 @@ void LvLManager::addProjectile(short x, short y, bool isRight)
 
 void LvLManager::LoadLvL() 
 {
+	// clear up before writing to prevent memory leaks
+	mapp.clear();
+	entitiesList->Clear();
+
 	switch (lvl) {
 	case 0: LvL0(); break;
 	case 1: LvL1(); break;
@@ -111,9 +124,6 @@ void LvLManager::GameWon()
 
 void LvLManager::LvL0()
 {
-	// clear up before writing to prevent memory leaks
-	mapp.clear();
-
 	// set size
 	mapp.resize(width, std::vector<char>(hight, NULL)); // restucturing code to have Block() be the actual blocks and the empty positions being nullptr would remove a bunch of releases and speed up efichency however needs a late restructuring of code	
 

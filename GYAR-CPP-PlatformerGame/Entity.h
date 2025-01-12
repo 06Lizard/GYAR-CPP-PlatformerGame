@@ -29,6 +29,6 @@ public:
 		: health(health), GraphicBase(texture, colour, collision), Position(x, y) {}
 	virtual ~Entity() = default;
 
-	short getHealth() const;
 	virtual void Update() = 0;
+	virtual void TakeDamage() = 0;
 };

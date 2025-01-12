@@ -1,11 +1,6 @@
 #include "Player.h" 
 // Might need work
 
-short Player::getHealth() const
-{
-    return health;
-}
-
 void Player::Update() {	
 	Input();
 	Move();	
@@ -51,9 +46,7 @@ void Player::Move() {
 		states |= isGrounded;
 	else states &= ~isGrounded;
 
-	//Jump time needs to be more consistent
-
-	// 1. stop jumping if W and jumping
+	// 1. stop jumping if UP and jumping
 	if (!(states & Up) && (states & isJump)) {
 		states &= ~isJump; // clears the isJump flag
 		states = (states & ~jumpTime); // clears bits 6 and 7
@@ -66,6 +59,11 @@ void Player::Move() {
 		}
 		else {
 			y++; // fall
+			for (auto& enemy : _LvLManager.entitiesList->enemies) {
+				if (x == enemy->x && y == enemy->y) {
+					enemy->TakeDamage();
+				}
+			}
 		}
 	}
 
@@ -123,7 +121,12 @@ void Player::Collision()
 	
 	for (auto& enemy : _LvLManager.entitiesList->enemies) {
 		if (x == enemy->x && y == enemy->y) {
-			health--;
+			TakeDamage();
+		}
+	}
+	for (auto& projectile : _LvLManager.entitiesList->projectiles) {
+		if (x == projectile->x && y == projectile->y) {
+			TakeDamage();
 		}
 	}
 

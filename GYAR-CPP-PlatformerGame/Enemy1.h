@@ -13,9 +13,14 @@ public:
 	Enemy1(short x, short y, bool faceRight, const LvLManager::LvLManagerHandle& _LvLManagerHandle)	
 		//: Entity(1, 'E', 93, x, y)
 		: Enemy(_health, _texture, _colour, _collision, x, y, faceRight, _LvLManagerHandle) {		
-		if (faceRight) states &= Right;
+		if (faceRight) states |= Right;
 	}
 	void Update() override;
+	void TakeDamage() override {
+		health--;
+		if (health < 0)
+			delete this;
+	}
 
 private:
 	void Move() override;
