@@ -24,6 +24,7 @@ private:
 	void Initzialize();
 	void GameLoop();
 	void Update();
+	void OptimizedRender();
 	void Render();	
 	void UpdateCamera();
 };
