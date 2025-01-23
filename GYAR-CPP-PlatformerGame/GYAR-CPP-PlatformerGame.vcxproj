@@ -128,23 +128,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BlockManager.cpp" />
-    <ClCompile Include="Drawing.cpp" />
-    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Enemy1.cpp" />
-    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GraphicBase.cpp" />
     <ClCompile Include="LvLManager.cpp" />
     <ClCompile Include="PlatformerGame.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Source.cpp" />
-    <ClCompile Include="Position.cpp" />
-    <ClCompile Include="Text.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlockManager.h" />
     <ClInclude Include="DeltaTimeCounter.h" />
-    <ClInclude Include="Drawing.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enemy1.h" />
     <ClInclude Include="Entity.h" />
