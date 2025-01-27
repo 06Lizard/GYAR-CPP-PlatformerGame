@@ -3,8 +3,7 @@
 #include "string"
 
 void PlatformerGame::Run() {
-	std::cout << "\033[0m"; // reset formating;
-	std::cout << "\033[?25l"; // hide cursor
+	std::cout << "\033[0m\033[?25l"; // reset formating & hide cursor
 	// std::cout << "\033[?25h"; // show cursor
 	Menue(); // making menue a return would probably make this looks mother
 	std::cout << "\033[2J\033[0m\033[3;5H Thanks for playing" << std::endl; // escape call 2J clears screen
@@ -36,7 +35,7 @@ void PlatformerGame::Menue() {
 		}
 
 		if (menuOption)
-			GameLoop();
+			GameLoop(); // starts the actual game
 		else menueLoop = false; //leaves the menue and exits game
 	}
 }
@@ -108,7 +107,7 @@ void PlatformerGame::Render() {
 				{
 					if (enemy->x == worldX && enemy->y == worldY)
 						std::cout << "\033[" << y + 1 << ";" << x + 1 << "H\033[" << enemy->getColour() << "m" << enemy->getTexture();
-				}
+				} // and the same thing for the projectile rendering (unnececary as this is depricated anyways)
 			}
 		}
 	}
@@ -116,7 +115,7 @@ void PlatformerGame::Render() {
 // current selution is just rendering on +1 XY
 
 // new
-// renders the mapp, avrage time of 0.3 ms
+// renders the mapp, avrage time of 0.33 ms
 void PlatformerGame::OptimizedRender() {
 	// 1: populate/prepare the screenBuffer
 	struct DisplayElement { char texture; short colour; };
@@ -151,6 +150,15 @@ void PlatformerGame::OptimizedRender() {
 				if (enemy->x == worldX && enemy->y == worldY) {
 					element.texture = enemy->getTexture();
 					element.colour = enemy->getColour();
+					break;
+				}
+			}
+
+			// projectile handling
+			for (auto& projectile : _LvLManager.entitiesList->projectiles) {
+				if (projectile->x == worldX && projectile->y == worldY) {
+					element.texture = projectile->getTexture();
+					element.colour = projectile->getColour();
 					break;
 				}
 			}

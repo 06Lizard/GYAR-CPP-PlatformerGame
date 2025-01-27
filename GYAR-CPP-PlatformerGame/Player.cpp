@@ -130,9 +130,5 @@ void Player::Collision()
 		}
 	}
 
-	if (health < 0) {
-		_LvLManager.LvLFinished();
-	}
-
 	///*tmp*/mapp->mapp[x][y]->Update();
-}
+}	
