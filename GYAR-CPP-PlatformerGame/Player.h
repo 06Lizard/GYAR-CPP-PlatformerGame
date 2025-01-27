@@ -6,7 +6,7 @@
 class Player : public Entity
 {
 private:
-	static const short _health = 3;
+	static const short _health = 1;
 	static const char _texture = '#';
 	static const short _colour = Text::Red;
 	static const bool _collision = false;
@@ -20,7 +20,7 @@ public:
 
 	void TakeDamage() override { 
 		health--;
-		if (health < 0)
+		if (health <= 0)
 			_LvLManager.GameOver();
 		else _LvLManager.ResetLvL();
 	} // tmp, invisibility frames sugested

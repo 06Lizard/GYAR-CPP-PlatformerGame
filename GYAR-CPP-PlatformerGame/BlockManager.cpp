@@ -6,7 +6,7 @@ bool BlockManager::getCollision(const char& block)
 {
 	switch (block)
 	{
-	case 'G':
+	case ground:
 		return true;
 	default:
 		return false;
@@ -17,11 +17,11 @@ char BlockManager::getTexture(const char& block)
 {
 	switch (block)
 	{
-	case 'G':
+	case ground:
 		return '=';
-	case 'F':
+	case flag:
 		return 'F';
-	case 'f':
+	case flagPole:
 		return '|';
 	default:
 		return ' ';
@@ -32,11 +32,11 @@ short BlockManager::getColour(const char& block)
 {
 	switch (block)
 	{
-	case 'G':
+	case ground:
 		return Text::Green;
-	case 'F':
+	case flag:
 		return Text::BrightRed;
-	case 'f':
+	case flagPole:
 		return Text::Gray;
 	default:
 		return Text::ResetAll;

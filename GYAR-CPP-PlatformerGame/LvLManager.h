@@ -69,7 +69,6 @@ public:
 	void LvLFinished();
 	void GameOver();
 	void Update();
-	void Render();
 
 	void addEnemy(std::unique_ptr<Enemy> enemy);
 	void addProjectile(short x, short y, bool isRight);

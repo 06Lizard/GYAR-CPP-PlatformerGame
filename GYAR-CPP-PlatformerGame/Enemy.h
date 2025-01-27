@@ -11,7 +11,7 @@ public:
 		//: Entity(1, 'E', 93, x, y)
 		: Entity(HP, texture, colour, collision, x, y), _LvLManagerHandle(_LvLManagerHandle)
 	{
-		if (faceRight) states &= Right; 
+		if (faceRight) states |= Right; 
 	}
 
 	virtual ~Enemy() = default;

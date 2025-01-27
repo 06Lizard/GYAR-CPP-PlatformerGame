@@ -39,9 +39,10 @@ void LvLManager::LvLFinished()
 }
 
 void LvLManager::GameOver() {
+	runningPtr = false;
 	std::cout << "\033[2J\033[0m\033[3;5H Game Over\033[4;5H Score: " << score << "\033[5;5H Level: " << lvl << std::endl;
 	Beep(1000, 100);
-	std::this_thread::sleep_for(std::chrono::milliseconds(500));
+	std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 	_getch();
 	// we'll go back to the menue loop, be nice if we wen't back to the start of the menue function but eh
 }
@@ -64,32 +65,6 @@ void LvLManager::Update()
 	for (auto& projectile : entitiesList->projectiles)
 	{
 		projectile->Update();
-	}
-}
-
-void LvLManager::Render() {
-	for (auto& enemy : entitiesList->enemies)
-	{
-		auto x = enemy->x;
-		auto y = enemy->y;
-
-		// x < camraPos->x+screenWidth
-		// x > camraPos->x;
-
-		if (cameraPos.x <= x && x < cameraPos.x + screenWidth &&
-			cameraPos.y <= y && y < cameraPos.y + screenHight && !mapp[x][y]) {
-			std::cout << "\033[" << y-cameraPos.y + 1 << ";" << x-cameraPos.x + 1 << "H\033[" << enemy->getColour() << "m" << enemy->getTexture();
-		}
-	}
-	for (auto& projectile : entitiesList->projectiles)
-	{
-		auto x = projectile->x;
-		auto y = projectile->y;
-
-		if (cameraPos.x <= x && x < cameraPos.x + screenWidth &&
-			cameraPos.y <= y && y < cameraPos.y + screenHight && !mapp[x][y]) {
-			std::cout << "\033[" << y + 1 << ";" << x + 1 << "H\033[" << projectile->getColour() << "m" << projectile->getTexture();
-		}
 	}
 }
 
@@ -120,6 +95,10 @@ void LvLManager::LoadLvL()
 void LvLManager::GameWon() 
 {
 	runningPtr = false;
+	std::cout << "\033[2J\033[0m\033[3;5H Game Won\033[4;5H Score: " << score << "\033[5;5H Level: " << lvl << std::endl;
+	Beep(1000, 100);
+	std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+	_getch();
 }
 
 void LvLManager::LvL0()

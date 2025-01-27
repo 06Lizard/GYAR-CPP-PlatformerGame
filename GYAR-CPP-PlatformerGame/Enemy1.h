@@ -18,7 +18,7 @@ public:
 	void Update() override;
 	void TakeDamage() override {
 		health--;
-		if (health < 0)
+		if (health <= 0)
 			delete this;
 	}
 
