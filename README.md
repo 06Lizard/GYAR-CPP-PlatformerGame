@@ -1,4 +1,8 @@
-0.35 ms avrage FrameTime
+0.35 ms avrage FrameTime (game loop)
+____________________________________
+0.05 ms avrage update time
+0.14 ms avrage render time
+0.19 ms avrage delay from benchmarker
 
 if u wanna play around with difrent update fucntions follow the comments in PlatformerGame.cpp function GameLoop
 
