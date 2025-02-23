@@ -62,12 +62,13 @@ void PlatformerGame::GameLoop()
 
 	while (running)
 	{		
+		// these times are written whiole acunting for the benchmarking tools time
 		/*depricated*/ //Render(); // 54.5 ms
-		//OptimizedRender(); // 0.33 ms
+		//OptimizedRender(); // 0.14 ms
 		Update(); // 0.05 ms
 		deltaFrameCounter.Count();
 		deltaFrameCounter.Display(1, 1, "Frame"); // change the second number to 17 if trying the depricated update
-		// the counter takes about 0.19 ms
+		// the counter takes about 0.19 ms (benchmarking tool)
 
 		//std::this_thread::sleep_for(std::chrono::milliseconds(50)); // tmp framerate limiter
 		// remember that it blocks the game for more then the time specified (5-10 ms)
@@ -115,7 +116,7 @@ void PlatformerGame::Render() {
 // current selution is just rendering on +1 XY
 
 // new
-// renders the mapp, avrage time of 0.33 ms
+// renders the mapp, avrage time of 0.33 ms and 0.14 ms when acunting for the benchmarking tool
 void PlatformerGame::OptimizedRender() {
 	// 1: populate/prepare the screenBuffer
 	struct DisplayElement { char texture; short colour; };
