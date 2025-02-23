@@ -70,7 +70,7 @@ void PlatformerGame::GameLoop()
 		deltaFrameCounter.Display(1, 1, "Frame"); // change the second number to 17 if trying the depricated update
 		// the counter takes about 0.19 ms (benchmarking tool)
 
-		//std::this_thread::sleep_for(std::chrono::milliseconds(50)); // tmp framerate limiter
+		std::this_thread::sleep_for(std::chrono::milliseconds(50)); // tmp framerate limiter
 		// remember that it blocks the game for more then the time specified (5-10 ms)
 	}
 }
@@ -191,11 +191,11 @@ void PlatformerGame::OptimizedRender() {
 		The command \033[1;1H sets the cursor position, and it's 7 bytes in total (including the H).
 
 		Row contribution: each row contributes
-			LvLManager::screenWidth × 6 + 1 bytes.
+			LvLManager::screenWidth ï¿½ 6 + 1 bytes.
 
 		Header contribution: the initial cursor reset string contributes 7 bytes.
 		Total:			
-			7 + LvLManager::screenHight + LvLManager::screenHight × LvLManager::screenWidth × 6
+			7 + LvLManager::screenHight + LvLManager::screenHight ï¿½ LvLManager::screenWidth ï¿½ 6
 		Or:
 			"\033[1;1H" + ("\n" * screenHight) + screenHight * screenWidth * 6
 	*/
