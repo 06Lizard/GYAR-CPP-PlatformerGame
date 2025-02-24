@@ -64,7 +64,7 @@ void PlatformerGame::GameLoop()
 	{		
 		// these times are written whiole acunting for the benchmarking tools time
 		/*depricated*/ //Render(); // 54.5 ms
-		//OptimizedRender(); // 0.14 ms
+		OptimizedRender(); // 0.14 ms
 		Update(); // 0.05 ms
 		deltaFrameCounter.Count();
 		deltaFrameCounter.Display(1, 1, "Frame"); // change the second number to 17 if trying the depricated update
