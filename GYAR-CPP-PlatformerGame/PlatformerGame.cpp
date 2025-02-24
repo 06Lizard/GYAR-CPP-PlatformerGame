@@ -66,11 +66,12 @@ void PlatformerGame::GameLoop()
 		/*depricated*/ //Render(); // 54.5 ms
 		OptimizedRender(); // 0.14 ms
 		Update(); // 0.05 ms
-		deltaFrameCounter.Count();
-		deltaFrameCounter.Display(1, 1, "Frame"); // change the second number to 17 if trying the depricated update
+		
+		deltaFrameCounter.CountAndDisplay(1, 1, "Frame"); // replaces both Count and Display by ignoring the benchmark time
+		//deltaFrameCounter.Count(); deltaFrameCounter.Display(1, 1, "Frame"); // change the second number to 17 if trying the depricated update
 		// the counter takes about 0.19 ms (benchmarking tool)
 
-		std::this_thread::sleep_for(std::chrono::milliseconds(50)); // tmp framerate limiter
+		std::this_thread::sleep_for(std::chrono::milliseconds(50)); // tmp framerate limiter (remove for benchmarking)
 		// remember that it blocks the game for more then the time specified (5-10 ms)
 	}
 }
